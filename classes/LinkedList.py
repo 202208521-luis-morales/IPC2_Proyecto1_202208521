@@ -53,4 +53,23 @@ class LinkedList:
             elements.append(current.data)
             current = current.next
         print(" -> ".join(map(str, elements)))
+    
+    def print_as_list(self):
+      current = self.head
+      counter = 1
+        
+      while current:
+        print(f"{counter}) {current.data}")
+        counter += 1
+        current = current.next
 
+    def get_elem_by_position(self, position: str):
+        current = self.head
+
+        counter = 1
+        while current:
+            if counter == position:
+                return current
+            current = current.next
+
+        return None

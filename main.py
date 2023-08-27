@@ -1,3 +1,8 @@
+from classes.LinkedList import LinkedList
+from classes.ManageXMLs import ManageXMLs
+
+xmlData = LinkedList()
+
 while(True):
   print("USAC - Segundo Semestre 2023")
   print("Proyecto 1 - IPC2")
@@ -15,14 +20,32 @@ while(True):
     print("\n")
     print("# Ha elegido '1. Cargar archivo'")
     print("\n")
-    print("Ingrese la del archivo")
-    # Subiendo archivo
-    print("\n")
-    print("# Archivo subido con éxito")
-    print("\n")
+    ruta_archivo = input("Ingrese la ruta del archivo: ")
+    new_xmlData = ManageXMLs(ruta_archivo)
+
+    resultado_validacion = new_xmlData.check_file(ruta_archivo)
+
+    if isinstance(resultado_validacion, bool):
+        xmlData.append(new_xmlData)
+        print("\n")
+        print("# Archivo subido con éxito")
+        print("\n")
+    else:
+        print(resultado_validacion)
+
   elif(option == "2"):
     print("\n")
     print("# Ha elegido '2. Procesar el Archivo'")
+    print("\n")
+    if not xmlData.is_empty():
+      xmlData.print_as_list()
+      print("\n")
+      position_by_user = input("Elija el número del archivo que quiere procesar: ")
+      xmlData.get_elem_by_position(position_by_user).process_file()
+      
+    else:
+      print("# ERROR: Primero debes agregar algún archivo")
+    
     print("\n")
     # Procesando
   elif(option == "3"):
