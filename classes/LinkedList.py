@@ -63,13 +63,14 @@ class LinkedList:
         counter += 1
         current = current.next
 
-    def get_elem_by_position(self, position: str):
+    def get_elem_by_position(self, position: int):
         current = self.head
 
         counter = 1
         while current:
-            if counter == position:
+            if counter == int(position):
                 return current
             current = current.next
+            counter += 1
 
         return None

@@ -14,7 +14,8 @@ while(True):
   print("3. Escribir archivo salida")
   print("4. Mostrar datos del estudiante")
   print("5. Generar gráfica")
-  option = input("Ingrese el número de opción:")
+  print("6. Salir")
+  option = input("Ingrese el número de opción: ")
 
   if(option == "1"):
     print("\n")
@@ -31,7 +32,9 @@ while(True):
         print("# Archivo subido con éxito")
         print("\n")
     else:
+        print("\n")
         print(resultado_validacion)
+        print("\n")
 
   elif(option == "2"):
     print("\n")
@@ -41,9 +44,17 @@ while(True):
       xmlData.print_as_list()
       print("\n")
       position_by_user = input("Elija el número del archivo que quiere procesar: ")
-      xmlData.get_elem_by_position(position_by_user).process_file()
-      
+      if xmlData.get_elem_by_position(position_by_user) != None:
+        xmlData.get_elem_by_position(position_by_user).data.process_file()
+        print("\n")
+        print("# Archivo procesado con éxito")
+        print("\n")
+      else:
+        print("\n")
+        print("# ERROR: El número de archivo es incorrecto")
+        print("\n")
     else:
+      print("\n")
       print("# ERROR: Primero debes agregar algún archivo")
     
     print("\n")
@@ -52,10 +63,20 @@ while(True):
     print("\n")
     print("# Ha elegido '3. Escribir Archivo de salida'")
     print("\n")
-    print("Ingrese la ruta del archivo de salida")
-    # Escribe la ruta
+    xmlData.print_as_list()
     print("\n")
-    print("# Ruta ingresada correctamente'")
+    position_by_user = input("Elija el número del archivo que quiere procesar: ")
+    output_route = input("Ingrese la ruta donde imprimirá el archivo: ")
+
+    if xmlData.get_elem_by_position(position_by_user) != None:
+      xmlData.get_elem_by_position(position_by_user).data.generate_output_xml(output_route)
+    else:
+      print("\n")
+      print("# ERROR: El número de archivo es incorrecto")
+      print("\n")
+
+    print("\n")
+    print("# Archivo generado correctamente'")
     print("\n")
   elif(option == "4"):
     print("\n")
