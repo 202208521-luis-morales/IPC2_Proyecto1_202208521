@@ -41,43 +41,55 @@ while(True):
     print("# Ha elegido '2. Procesar el Archivo'")
     print("\n")
     if not xmlData.is_empty():
-      xmlData.print_as_list()
+      dataAmount = xmlData.print_as_list(parameter=("processed", False))
       print("\n")
-      position_by_user = input("Elija el número del archivo que quiere procesar: ")
-      if xmlData.get_elem_by_position(position_by_user) != None:
-        xmlData.get_elem_by_position(position_by_user).data.process_file()
+
+      if dataAmount > 0:
+        position_by_user = input("Elija el número del archivo que quiere procesar: ")
+        if xmlData.get_elem_by_position(position_by_user) != None:
+          xmlData.get_elem_by_position(position_by_user).data.process_file()
+          print("\n")
+          print("# Archivo procesado con éxito")
+          print("\n")
+        else:
+          print("\n")
+          print("# ERROR: El número de archivo es incorrecto")
+          print("\n")
+      else:
         print("\n")
-        print("# Archivo procesado con éxito")
+        print("# ERROR: Primero debe de agregar algún archivo")
+        print("\n")
+    else:
+      print("\n")
+      print("# ERROR: Primero debes agregar algún archivo")
+      print("\n")
+
+  elif(option == "3"):
+    print("\n")
+    print("# Ha elegido '3. Escribir Archivo de salida'")
+    print("\n")
+    dataAmount = xmlData.print_as_list(parameter=("processed", True))
+    print("\n")
+
+    if dataAmount > 0:
+      position_by_user = input("Elija el número del archivo que quiere procesar: ")
+      output_route = input("Ingrese la ruta donde imprimirá el archivo: ")
+
+      if xmlData.get_elem_by_position(position_by_user) != None:
+        xmlData.get_elem_by_position(position_by_user).data.generate_output_xml(output_route)
+        print("\n")
+        print("# Archivo generado correctamente")
         print("\n")
       else:
         print("\n")
         print("# ERROR: El número de archivo es incorrecto")
         print("\n")
+
     else:
       print("\n")
-      print("# ERROR: Primero debes agregar algún archivo")
-    
-    print("\n")
-    # Procesando
-  elif(option == "3"):
-    print("\n")
-    print("# Ha elegido '3. Escribir Archivo de salida'")
-    print("\n")
-    xmlData.print_as_list()
-    print("\n")
-    position_by_user = input("Elija el número del archivo que quiere procesar: ")
-    output_route = input("Ingrese la ruta donde imprimirá el archivo: ")
-
-    if xmlData.get_elem_by_position(position_by_user) != None:
-      xmlData.get_elem_by_position(position_by_user).data.generate_output_xml(output_route)
-    else:
-      print("\n")
-      print("# ERROR: El número de archivo es incorrecto")
+      print("# ERROR: No hay archivos procesados. Sube un archivo y procésalo")
       print("\n")
 
-    print("\n")
-    print("# Archivo generado correctamente'")
-    print("\n")
   elif(option == "4"):
     print("\n")
     print("# Ha elegido '4. Mostrar datos del estudiante'")
@@ -93,9 +105,29 @@ while(True):
     print("\n")
     print("# Ha elegido '5. Generar gráfica'")
     print("\n")
-    # Generar gráfica
+
+    dataAmount = xmlData.print_as_list(parameter=("processed", True))
+    print("\n")
+
+    if dataAmount > 0:
+      position_by_user = input("Elija el número del archivo que quiere procesar: ")
+
+      if xmlData.get_elem_by_position(position_by_user) != None:
+        xmlData.get_elem_by_position(position_by_user).data.generate_graphs()
+        print("\n")
+        print("# Gráficos generados con éxito")
+        print("\n")
+      else:
+        print("\n")
+        print("# ERROR: El número de archivo es incorrecto")
+        print("\n")
+
+    else:
+      print("\n")
+      print("# ERROR: No hay archivos procesados. Sube un archivo y procésalo")
+      print("\n")
+
   elif(option == "6"):
     print("\n")
-    print("# ADIOS'")
+    print("# ADIOS")
     break
-    # Generar gráfica

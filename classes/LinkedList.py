@@ -54,14 +54,26 @@ class LinkedList:
             current = current.next
         print(" -> ".join(map(str, elements)))
     
-    def print_as_list(self):
+    def print_as_list(self, parameter: tuple = None):
       current = self.head
-      counter = 1
+      counter = 0
         
       while current:
-        print(f"{counter}) {current.data}")
-        counter += 1
+        if parameter is None:
+            print(f"{counter + 1}) {current.data}")
+            counter += 1
+        else:
+            key, value = parameter
+
+            if key == "processed":
+                if current.data.processed is bool(value):
+                    print(f"{counter + 1}) {current.data}")
+                    counter += 1
+
         current = current.next
+        
+    
+      return counter
 
     def get_elem_by_position(self, position: int):
         current = self.head
