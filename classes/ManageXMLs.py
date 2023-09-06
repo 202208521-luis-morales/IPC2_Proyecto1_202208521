@@ -57,8 +57,8 @@ class ManageXMLs:
 
                 # Método: llenar matriz con datos del archivo
                 for dato_elem in senal_elem.findall("dato"):
-                    data_matrix[int(dato_elem.get("t"))-1][int(dato_elem.get("A"))-1] = int(dato_elem.text)
-                    pattern_matrix[int(dato_elem.get("t"))-1][int(dato_elem.get("A"))-1] = (0 if int(dato_elem.text) == 0 else 1)
+                    data_matrix[int(dato_elem.get("t"))-1][int(dato_elem.get("A"))-1] = int(dato_elem.text) if dato_elem.text else 0
+                    pattern_matrix[int(dato_elem.get("t"))-1][int(dato_elem.get("A"))-1] = (0 if int(dato_elem.text) == 0 else 1) if dato_elem else 0
                 
                 input_data["signals_matrix"] = data_matrix
 
